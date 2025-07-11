@@ -14,7 +14,7 @@
                 multiSelect: false,
                 formatters: {
                     "valid": function(column, row) {
-                        return Crowdsec.formatters.yesno(!row.revoked);
+                        return CrowdSec.formatters.yesno(!row.revoked);
                     },
                 },
             }

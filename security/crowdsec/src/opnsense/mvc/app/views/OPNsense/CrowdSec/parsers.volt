@@ -15,7 +15,7 @@
                 formatters: {
                     "localpath": function(column, row) {
                         const val = row[column.id];
-                        return val ? val.replace(Crowdsec.config_dir_path, '') : ' ';
+                        return val ? val.replace(CrowdSec.config_dir_path, '') : ' ';
                     },
                 },
             }

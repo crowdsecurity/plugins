@@ -23,7 +23,7 @@
                         return row.updated_at;
                     },
                     "validated": function(column, row) {
-                        return Crowdsec.formatters.yesno(row.isValidated);
+                        return CrowdSec.formatters.yesno(row.isValidated);
                     }
                 },
             }
