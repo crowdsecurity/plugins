@@ -1,0 +1,40 @@
+{# SPDX-License-Identifier: MIT #}
+{# SPDX-FileCopyrightText: © 2021 CrowdSec <info@crowdsec.net> #}
+
+<script>
+    "use strict";
+
+    $(function() {
+        $("#cscli_bouncers").UIBootgrid({
+            search: '/api/crowdsec/bouncers/search/',
+            options: {
+                selection: false,
+                multiSelect: false,
+                formatters: {
+                    "valid": function(column, row) {
+                        return !row.revoked;
+                    },
+                },
+            }
+        });
+
+        updateServiceControlUI('crowdsec');
+    });
+</script>
+
+<table id="cscli_bouncers" class="table table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+            <th data-column-id="name" data-identifier="true">Name</th>
+            <th data-column-id="ip_address" data-formatter="ip_address">IP Address</th>
+            <th data-column-id="valid" data-formatter="valid">Valid</th>
+            <th data-column-id="last_pull">Last API Pull</th>
+            <th data-column-id="type">Type</th>
+            <th data-column-id="version">Version</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+    </tfoot>
+</table>
