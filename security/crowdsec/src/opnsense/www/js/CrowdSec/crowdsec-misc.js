@@ -110,6 +110,8 @@
 const CrowdSec = (function () {
   'use strict';
 
+  const config_dir_path = "/usr/local/etc/crowdsec";
+
   function _parseDuration(duration) {
     const re = /(-?)(?:(?:(\d+)h)?(\d+)m)?(\d+).\d+(m?)s/m;
     const matches = duration.match(re);
@@ -155,6 +157,10 @@ const CrowdSec = (function () {
       } else {
         return '<i class="fa fa-times text-danger"></i>';
       }
+    },
+
+    trimpath: function (val) {
+      return val ? val.replace(config_dir_path, '') : '';
     },
 
     duration: function (column, row) {
