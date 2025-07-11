@@ -174,11 +174,11 @@ const CrowdSec = (function () {
 
     datetime: function (val) {
       const parsed = moment(val);
-      if (!dt) {
+      if (!val) {
         return '';
       }
       if (!parsed.isValid()) {
-        console.error('Cannot parse timestamp: %s', dt);
+        console.error('Cannot parse timestamp: %s', val);
         return '???';
       }
       return $('<div>')
@@ -187,7 +187,7 @@ const CrowdSec = (function () {
           'data-placement': 'left',
           title: parsed.format(),
         })
-        .text(_humanizeDate(dt))
+        .text(_humanizeDate(val))
         .prop('outerHTML');
     },
   };
