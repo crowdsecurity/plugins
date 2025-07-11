@@ -23,8 +23,8 @@ class ParsersController extends ApiControllerBase
      */
     public function searchAction(): array
     {
-        $result = json_decode(trim((new Backend())->configdRun("crowdsec parsers-list")), true);
-        if ($result !== null) {
+        $rows = json_decode(trim((new Backend())->configdRun("crowdsec parsers-list")), true);
+        if ($rows !== null) {
             $total = sizeof($rows);
             return [
                 "total" => $total,

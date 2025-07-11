@@ -23,8 +23,8 @@ class ScenariosController extends ApiControllerBase
      */
     public function searchAction(): array
     {
-        $result = json_decode(trim((new Backend())->configdRun("crowdsec scenarios-list")), true);
-        if ($result !== null) {
+        $rows = json_decode(trim((new Backend())->configdRun("crowdsec scenarios-list")), true);
+        if ($rows !== null) {
             $total = sizeof($rows);
             return [
                 "total" => $total,

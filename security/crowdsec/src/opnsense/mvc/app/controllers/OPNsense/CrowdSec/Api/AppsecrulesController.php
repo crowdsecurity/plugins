@@ -23,8 +23,8 @@ class AppsecrulesController extends ApiControllerBase
      */
     public function searchAction(): array
     {
-        $result = json_decode(trim((new Backend())->configdRun("crowdsec appsec-rules-list")), true);
-        if ($result !== null) {
+        $rows = json_decode(trim((new Backend())->configdRun("crowdsec appsec-rules-list")), true);
+        if ($rows !== null) {
             $total = sizeof($rows);
             return [
                 "total" => $total,
