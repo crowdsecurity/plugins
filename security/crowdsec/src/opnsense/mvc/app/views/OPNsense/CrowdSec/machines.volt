@@ -19,8 +19,11 @@
                     "ip_address": function(column, row) {
                         return row.ipAddress;
                     },
-                    "last_update": function(column, row) {
-                        return CrowdSec.formatters.datetime(row.updated_at);
+                    "created": function(column, row) {
+                        return CrowdSec.formatters.datetime(row.created_at);
+                    },
+                    "last_seen": function(column, row) {
+                        return CrowdSec.formatters.datetime(row.last_heartbeat);
                     },
                     "validated": function(column, row) {
                         return CrowdSec.formatters.yesno(row.isValidated);
@@ -36,11 +39,13 @@
 <table id="cscli_machines" class="table table-condensed table-hover table-striped">
     <thead>
         <tr>
-            <th data-column-id="name" data-type="string" data-identifier="true" data-formatter="name">Name</th>
-            <th data-column-id="ip_address" data-type="string" data-formatter="ip_address">IP Address</th>
-            <th data-column-id="last_update" data-type="string" data-formatter="last_update">Last Update</th>
-            <th data-column-id="validated" data-type="string" data-formatter="validated">Validated?</th>
-            <th data-column-id="version" data-type="string">Version</th>
+            <th data-column-id="name" data-formatter="name">Name</th>
+            <th data-column-id="ip_address" data-formatter="ip_address">IP Address</th>
+            <th data-column-id="created" data-formatter="created" data-visible="false">Created</th>
+            <th data-column-id="last_seen" data-formatter="last_seen">Last Seen</th>
+            <th data-column-id="validated" data-formatter="validated">Validated?</th>
+            <th data-column-id="version">Version</th>
+            <th data-column-id="os" data-visible="false">Version</th>
         </tr>
     </thead>
     <tbody>

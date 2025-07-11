@@ -13,6 +13,12 @@
                 selection: false,
                 multiSelect: false,
                 formatters: {
+                    "created": function(column, row) {
+                        return CrowdSec.formatters.datetime(row.created_at);
+                    },
+                    "last_seen": function(column, row) {
+                        return CrowdSec.formatters.datetime(row.last_pull);
+                    },
                     "valid": function(column, row) {
                         return CrowdSec.formatters.yesno(!row.revoked);
                     },
@@ -27,12 +33,14 @@
 <table id="cscli_bouncers" class="table table-condensed table-hover table-striped">
     <thead>
         <tr>
-            <th data-column-id="name" data-identifier="true">Name</th>
+            <th data-column-id="name">Name</th>
             <th data-column-id="ip_address" data-formatter="ip_address">IP Address</th>
+            <th data-column-id="created" data-formatter="created" data-visible="false">Created</th>
             <th data-column-id="valid" data-formatter="valid">Valid</th>
-            <th data-column-id="last_pull">Last API Pull</th>
+            <th data-column-id="last_seen" data-formatter="last_seen">Last Seen</th>
             <th data-column-id="type">Type</th>
             <th data-column-id="version">Version</th>
+            <th data-column-id="os" data-visible="false">Version</th>
         </tr>
     </thead>
     <tbody>
