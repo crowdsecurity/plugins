@@ -1,6 +1,8 @@
 {# SPDX-License-Identifier: MIT #}
 {# SPDX-FileCopyrightText: © 2021 CrowdSec <info@crowdsec.net> #}
 
+<script src="/ui/js/moment-with-locales.min.js"></script>
+<script src="/ui/js/CrowdSec/crowdsec-misc.js"></script>
 <script>
     "use strict";
 
@@ -10,6 +12,12 @@
             options: {
                 selection: false,
                 multiSelect: false,
+                formatters: {
+                    "localpath": function(column, row) {
+                        const val = row[column.id];
+                        return val ? val.replace(Crowdsec.config_dir_path, '') : ' ';
+                    },
+                },
             }
         });
 
@@ -23,7 +31,7 @@
             <th data-column-id="name">Name</th>
             <th data-column-id="status">Status</th>
             <th data-column-id="local_version">Version</th>
-            <th data-column-id="local_path">Path</th>
+            <th data-column-id="local_path" data-formatter="localpath" data-visible="false">Path</th>
             <th data-column-id="description">Description</th>
         </tr>
     </thead>

@@ -1,6 +1,8 @@
 {# SPDX-License-Identifier: MIT #}
 {# SPDX-FileCopyrightText: © 2021 CrowdSec <info@crowdsec.net> #}
 
+<script src="/ui/js/moment-with-locales.min.js"></script>
+<script src="/ui/js/CrowdSec/crowdsec-misc.js"></script>
 <script>
     "use strict";
 
