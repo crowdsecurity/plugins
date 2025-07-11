@@ -30,7 +30,7 @@ class ParsersController extends ApiControllerBase
                 "total" => $total,
                 "rowCount" => $total,
                 "current" => 1,
-                "rows" => $rows
+                "rows" => $rows["parsers"]
             ];
         }
         return ["message" => "unable to retrieve data"];

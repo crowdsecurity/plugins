@@ -30,7 +30,7 @@ class AppsecrulesController extends ApiControllerBase
                 "total" => $total,
                 "rowCount" => $total,
                 "current" => 1,
-                "rows" => $rows
+                "rows" => $rows["appsec-rules"]
             ];
         }
         return ["message" => "unable to retrieve data"];
