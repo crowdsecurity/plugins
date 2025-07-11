@@ -172,9 +172,8 @@ const CrowdSec = (function () {
         .prop('outerHTML');
     },
 
-    datetime: function (column, row) {
-      const dt = row[column.id];
-      const parsed = moment(dt);
+    datetime: function (val) {
+      const parsed = moment(val);
       if (!dt) {
         return '';
       }

@@ -20,7 +20,7 @@
                         return row.ipAddress;
                     },
                     "last_update": function(column, row) {
-                        return row.updated_at;
+                        return Crowdsec.formatters.datetime(row.updated_at);
                     },
                     "validated": function(column, row) {
                         return CrowdSec.formatters.yesno(row.isValidated);
