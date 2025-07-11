@@ -92,7 +92,7 @@ const CrowdSec = (function () {
     } else {
       timestamp = $freshness.data('refresh_timestamp');
     }
-    const howlongHuman = '???';
+    let howlongHuman = '???';
     if (timestamp) {
       const howlongms = moment() - moment(timestamp);
       howlongHuman = moment.duration(howlongms).humanize();

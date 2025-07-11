@@ -12,18 +12,18 @@ use OPNsense\Core\Backend;
 /**
  * @package OPNsense\CrowdSec
  */
-class BouncersController extends ApiControllerBase
+class CollectionsController extends ApiControllerBase
 {
     /**
-     * Retrieve list of bouncers
+     * Retrieve the installed collections
      *
-     * @return array of bouncers
+     * @return dictionary of items, by type
      * @throws \OPNsense\Base\ModelException
      * @throws \ReflectionException
      */
     public function searchAction(): array
     {
-        $result = json_decode(trim((new Backend())->configdRun("crowdsec bouncers-list")), true);
+        $result = json_decode(trim((new Backend())->configdRun("crowdsec collections-list")), true);
         if ($result !== null) {
             $total = sizeof($rows);
             return [

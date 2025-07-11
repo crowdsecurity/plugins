@@ -5,8 +5,12 @@
 <script src="/ui/js/CrowdSec/crowdsec.js"></script>
 
 <script>
+    "use strict";
+
     $(function() {
         CrowdSec.init();
+
+        updateServiceControlUI('crowdsec');
     });
 </script>
 
