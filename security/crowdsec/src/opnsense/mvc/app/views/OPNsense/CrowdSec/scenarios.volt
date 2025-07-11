@@ -14,7 +14,7 @@
                 multiSelect: false,
                 formatters: {
                     "localpath": function(column, row) {
-                        return CrowdSec.trimpath(row[column.id]);
+                        return CrowdSec.formatters.trimpath(row[column.id]);
                     },
                 },
             }
