@@ -24,7 +24,7 @@ class DecisionsController extends ApiControllerBase
     public function searchAction(): array
     {
         $rows = json_decode(trim((new Backend())->configdRun("crowdsec decisions-list")), true);
-        if ($result !== null) {
+        if ($rows !== null) {
             $total = sizeof($rows);
             return [
                 "total" => $total,
