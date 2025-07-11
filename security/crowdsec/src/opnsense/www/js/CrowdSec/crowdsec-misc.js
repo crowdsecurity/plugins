@@ -5,51 +5,6 @@
 
 
 
-//  function _decisionsByType(decisions) {
-//    const dectypes = {};
-//    if (!decisions) {
-//      return '';
-//    }
-//    decisions.map(function (decision) {
-//      // TODO ignore negative expiration?
-//      dectypes[decision.type] = dectypes[decision.type]
-//        ? dectypes[decision.type] + 1
-//        : 1;
-//    });
-//    let ret = '';
-//    for (const type in dectypes) {
-//      if (ret !== '') {
-//        ret += ' ';
-//      }
-//      ret += type + ':' + dectypes[type];
-//    }
-//    return ret;
-//  }
-
-//  function _initStatusAlerts() {
-//    const url = '/api/crowdsec/alerts/get';
-//    const id = '#alerts';
-//    const dataCallback = function (data) {
-//      const rows = [];
-//      data.map(function (row) {
-//        rows.push({
-//          id: row.id,
-//          value:
-//            row.source.scope + (row.source.value ? ':' + row.source.value : ''),
-//          reason: row.scenario || ' ',
-//          country: row.source.cn || ' ',
-//          as: row.source.as_name || ' ',
-//          decisions: _decisionsByType(row.decisions) || ' ',
-//          created_at: row.created_at,
-//        });
-//      });
-//      $(id + ' table')
-//        .bootgrid('clear')
-//        .bootgrid('append', rows);
-//    };
-//    _initTab(id, url, dataCallback);
-//  }
-
 //  function _initStatusDecisions() {
 //    const url = '/api/crowdsec/decisions/get';
 //    const id = '#decisions';
@@ -110,7 +65,7 @@
 const CrowdSec = (function () {
   'use strict';
 
-  const config_dir_path = "/usr/local/etc/crowdsec";
+  const config_dir_path = "/usr/local/etc/crowdsec/";
 
   function _parseDuration(duration) {
     const re = /(-?)(?:(?:(\d+)h)?(\d+)m)?(\d+).\d+(m?)s/m;

@@ -9,6 +9,40 @@ use OPNsense\Base\ApiControllerBase;
 use OPNsense\CrowdSec\CrowdSec;
 use OPNsense\Core\Backend;
 
+
+function unrollDecisions(array $alerts): array
+{
+    $result = [];
+
+    foreach ($alerts as $alert) {
+        if (!isset($alert['decisions']) || !is_array($alert['decisions'])) {
+            continue;
+        }
+
+        foreach ($alert['decisions'] as $decision) {
+            // ignore deleted decisions
+            if (isset($decision['duration']) && str_starts_with($decision['duration'], '-')) {
+                continue;
+            }
+
+            $row = $decision;
+
+            // Add parent alert fields with prefix
+            foreach ($alert as $key => $value) {
+                if ($key === 'decisions') {
+                    continue; // skip nested array
+                }
+                $row["alert_" . $key] = $value;
+            }
+
+            $result[] = $row;
+        }
+    }
+
+    return $result;
+}
+
+
 /**
  * @package OPNsense\CrowdSec
  */
@@ -23,32 +57,36 @@ class DecisionsController extends ApiControllerBase
      */
     public function searchAction(): array
     {
-        $rows = json_decode(trim((new Backend())->configdRun("crowdsec decisions-list")), true);
-        if ($rows !== null) {
-            $total = sizeof($rows);
-            return [
-                "total" => $total,
-                "rowCount" => $total,
-                "current" => 1,
-                "rows" => $rows
-            ];
+        $result = json_decode(trim((new Backend())->configdRun("crowdsec decisions-list")), true);
+        if ($result === null) {
+            return ["message" => "unable to retrieve data"];
         }
-        return ["message" => "unable to retrieve data"];
+
+        $rows = unrollDecisions($result);
+
+        $total = sizeof($rows);
+        return [
+            "total" => $total,
+             "rowCount" => $total,
+             "current" => 1,
+            "rows" => $rows
+        ];
     }
 
     public function deleteAction($decision_id)
     {
         if ($this->request->isDelete()) {
             $result = (new Backend())->configdRun("crowdsec decisions-delete ${decision_id}");
-            if ($result !== null) {
-                // why does the action return \n\n for empty output?
-                if (trim($result) === '') {
-                    return ["message" => "OK"];
-                }
-                // TODO handle error
-                return ["message" => result];
+            if ($result === null) {
+                return ["message" => "OK"];
             }
-            return ["message" => "OK"];
+
+            // why does the action return \n\n for empty output?
+            if (trim($result) === '') {
+                return ["message" => "OK"];
+            }
+            // TODO handle error
+            return ["message" => result];
         } else {
             $this->response->setStatusCode(405, "Method Not Allowed");
             $this->response->setHeader("Allow", "DELETE");

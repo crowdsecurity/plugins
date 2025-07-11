@@ -24,15 +24,16 @@ class PostoverflowsController extends ApiControllerBase
     public function searchAction(): array
     {
         $rows = json_decode(trim((new Backend())->configdRun("crowdsec postoverflows-list")), true);
-        if ($rows !== null) {
-            $total = sizeof($rows);
-            return [
-                "total" => $total,
-                "rowCount" => $total,
-                "current" => 1,
-                "rows" => $rows["postoverflows"]
-            ];
+        if ($rows === null) {
+            return ["message" => "unable to retrieve data"];
         }
-        return ["message" => "unable to retrieve data"];
+
+        $total = sizeof($rows);
+        return [
+            "total" => $total,
+            "rowCount" => $total,
+            "current" => 1,
+            "rows" => $rows["postoverflows"]
+        ];
     }
 }
