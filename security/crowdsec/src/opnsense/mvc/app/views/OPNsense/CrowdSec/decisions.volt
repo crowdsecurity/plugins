@@ -32,7 +32,7 @@
                         return row.alert_source.as_name;
                     },
                     "expiration": function(column, row) {
-                        return CrowdSec.formatters.duration(row.duration);
+                        return row.duration;
                     },
                 },
             }
