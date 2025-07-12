@@ -42,6 +42,9 @@
     });
 </script>
 
+Note: the decisions coming from the CAPI (signals collected by the CrowdSec users) do not appear here.
+To show them, use <code>cscli decisions list -a</code> in a shell.
+
 <table id="cscli_decisions" class="table table-condensed table-hover table-striped">
     <thead>
         <tr>
@@ -53,7 +56,7 @@
             <th data-column-id="country" data-formatter="country">Country</th>
             <th data-column-id="as" data-formatter="as">AS</th>
             <th data-column-id="events_count" data-type="numeric">Events</th>
-            <th data-column-id="expiration" data-type="expiration">Expiration</th>
+            <th data-column-id="expiration" data-formatter="expiration">Expiration</th>
             <th data-column-id="alert_id" data-type="numeric" data-visible="false">Alert&nbsp;ID</th>
         </tr>
     </thead>
