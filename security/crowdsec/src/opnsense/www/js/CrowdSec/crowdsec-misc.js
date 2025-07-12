@@ -118,18 +118,17 @@ const CrowdSec = (function () {
       return val ? val.replace(config_dir_path, '') : '';
     },
 
-    duration: function (column, row) {
-      const duration = row[column.id];
-      if (!duration) {
+    duration: function (val) {
+      if (!val) {
         return 'n/a';
       }
       return $('<div>')
         .attr({
           'data-toggle': 'tooltip',
           'data-placement': 'left',
-          title: duration,
+          title: val,
         })
-        .text(_humanizeDuration(duration))
+        .text(_humanizeDuration(val))
         .prop('outerHTML');
     },
 
